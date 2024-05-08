@@ -63,7 +63,9 @@ export function fillColumns(str: string, finalLength: number): string {
 	}
 
 	if (editor.options.insertSpaces) {
-		for (let e = 0; e < tabSize + finalLength - str.length; e++) {
+		// Extend str with spaces, until the length of finalLength, plus one tab's worth of spaces.
+		// We need to subtract finalLegth % tabSize to align with the use of the tab key 
+		for (let e = 0; e < tabSize - finalLength % tabSize + finalLength - str.length; e++) {
 			tab += " ";
 		}
 		str += tab;
